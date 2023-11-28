@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Carrito de Compra</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        .Titulo {
+            color: aliceblue;
+            background-color: palevioletred;
+            padding: 2%;
+            width: 100vw;
+            height: 50px;
+            margin: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="Titulo">Mi Compra</h1>
+    <div class="Compra">
+
+        <div class="Compra-producto">
+            <!--<img src="" alt="Cafe">-->
+            <div>
+                <h3>Bocadillo</h3>
+                <!--<p>0.00€</p>-->
+            </div>
+            <div class="Compra-btns">
+                <button onclick="cantidad++; console.log(cantidad);">+1</button>
+                <button onclick="cantidad=+2; console.log(cantidad);">+2</button>
+                <button onclick="cantidad=+3; console.log(cantidad);">+3</button>
+                <button onclick="cantidad--; console.log(cantidad);">Borrar 1</button>
+            </div>
+        </div>
+        <div class="Compra-producto">
+            <!--<img src="" alt="Cafe">-->
+            <div>
+                <h3>Café</h3>
+                <!--<p>0.00€</p>-->
+            </div>
+            <div class="Compra-btns">
+                <button onclick="cantidad++; console.log(cantidad);">+1</button>
+                <button onclick="cantidad=+2; console.log(cantidad);">+2</button>
+                <button onclick="cantidad=+3; console.log(cantidad);">+3</button>
+                <button onclick="cantidad--; console.log(cantidad);">Borrar 1</button>
+            </div>
+        </div>
+        <div class="Compra-producto">
+            <!--<img src="" alt="Cafe">-->
+            <div>
+                <h3>Tostadas</h3>
+                <!--<p>0.00€</p>-->
+            </div>
+            <div class="Compra-btns">
+                <button onclick="cantidad++; console.log(cantidad);">+1</button>
+                <button onclick="cantidad=+2; console.log(cantidad);">+2</button>
+                <button onclick="cantidad=+3; console.log(cantidad);">+3</button>
+                <button onclick="cantidad--; console.log(cantidad);">Borrar 1</button>
+            </div>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <button onclick="cantidad=0; console.log(cantidad);">Vaciar Carrito</button>
+    <button onclick=" alert('Total es:' + cantidad); console.warn('Total es:' + cantidad);">Total</button>
+
+</body>
+
+
+<script>
+    let cantidad = 0;
+    console.log(cantidad);
+
+
+
+</script>
+
+</html>
