@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cara o Cruz</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+        }
+
+
+        .moneda{
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            color:  rgb(173, 81, 162);
+        }
+
+        button {
+            align-items: center;
+            padding: 10px 20px;
+            background-color: rgb(173, 81, 162);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 50px;
+            text-align: center;
+            
+        }
+
+        #resultado{
+            margin-top: 100px;
+            text-align: center;
+            font-size: 30px;
+            transition: 0.5s ease;
+        }
+
+        #contador{
+            margin-top: 100px;
+            text-align: center;
+            font-size: 20px;
+            transition: 0.5s ease;
+        }
+
+        #vecesCruz{
+            margin-top: 50px;
+            text-align: center;
+            font-size: 20px;
+            transition: 0.5s ease;
+        }
+
+        #vecesCara{
+            margin-top: 50px;
+            text-align: center;
+            font-size: 20px;
+            transition: 0.5s ease;
+        }
+
+        #porcentajeCruz{
+            margin-top: 50px;
+            text-align: center;
+            font-size: 20px;
+            transition: 0.5s ease;
+        }
+        #porcentajeCara{
+            margin-top: 50px;
+            text-align: center;
+            font-size: 20px;
+            transition: 0.5s ease;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="moneda">
+        <h2>Prueba Cara o Cruz</h2>
+    <button onclick="caraCruz()">Tira la moneda</button>
+    </div>
+    <div id="resultado"></div>
+
+    <div id="contador"></div>
+
+    <div id="vecesCruz"></div>
+
+    <div id="vecesCara"></div>
+
+    <div id="porcentajeCruz"></div>
+
+    <div id="porcentajeCara"></div>
+
+    <script>
+    let clicks = 0;
+    let cruzClicks = 0;
+    let caraClicks = 0;
+    let porcentajeCruz =0;
+    let porcentajeCara =0;
+
+        function caraCruz() {
+        
+            const num = Math.random();
+           
+            const resultado = document.getElementById('resultado');
+            const clickCounter = document.getElementById('contador');
+            const vecesCruz = document.getElementById('vecesCruz');
+            const vecesCara = document.getElementById('vecesCara');
+            const porcentCruz = document.getElementById('porcentajeCruz');
+            const porcentCara = document.getElementById('porcentajeCara');
+
+            
+
+            Math.round(num);
+
+            clicks ++;
+
+            if (num < 0.5) {
+                resultado.innerText= 'Ha salido Cruz';
+                console.log('Cruz');
+                cruzClicks ++;
+            } else {
+                resultado.innerText= 'Ha salido Cara';
+                console.log('Cara');
+                caraClicks ++;
+            }
+
+
+            clickCounter.innerText= 'Veces que tiraste la moneda: ' + clicks;
+
+            vecesCruz.innerText= 'Veces que ha ganado Cruz: ' + cruzClicks;
+            vecesCara.innerText= 'Veces que ha ganado Cara: ' + caraClicks;
+
+            porcentajeCruz =Math.round((cruzClicks/clicks)*100);
+            porcentajeCara =Math.round((caraClicks/clicks)*100);
+
+            porcentCruz.innerText= 'Probabilidad Cruz: ' + porcentajeCruz + '%';
+            porcentCara.innerText= 'Probabilidad Cruz: ' + porcentajeCara + '%';
+            
+        }
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

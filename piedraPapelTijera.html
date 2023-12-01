@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra, Papel o Tijera</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(244, 221, 238);
+        }
+
+        .Contenedor {
+            background-color: rgb(255, 255, 255);
+            padding: 2%;
+            margin: 10%;
+            align-content: center;
+            border-radius: 30px;
+            text-align: center;
+        }
+
+        .Contenedor h2 {
+            font-size: 40px;
+        }
+
+        .Contenedor button {
+            border-radius: 10px;
+            border: 0;
+            padding: 2%;
+            box-shadow: inset -1px -1px 4px 0px;
+            margin: 2%;
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .resultados{
+            margin-top: 100px;
+            font-size: 30px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Contenedor">
+        <h2>Juega a Piedra, Papel o Tijera</h2>
+
+        <button id="btnPiedra" onclick="tirada('piedra')"><img src="./img/piedra.png" alt="Piedra"></button>
+        <button id="btnPapel" onclick="tirada('papel')"><img src="./img/papel.png" alt="Papel"></button>
+        <button id="btnTijera" onclick="tirada('tijera')"><img src="./img/tijera.png" alt="Tijera"></button>
+
+        <div id="resultado" class="resultados"></div>
+    </div>
+
+    <script>
+        let jugador="";
+        let ordenador="";
+
+        function tirada(jugador) {
+        const resultado = document.getElementById('resultado');
+
+        const alAzar = Math.random();
+
+        if (alAzar < 1/3) {
+            ordenador = 'piedra';
+        } else if(alAzar > 1/3 && alAzar < 2/3){
+            ordenador = 'papel';
+        }else{
+            ordenador = 'tijera';
+        }
+
+            console.log('YO: ', jugador, 'PC: ', ordenador)
+
+        if(jugador=='piedra' && ordenador=='piedra' || jugador=='papel' && ordenador=='papel' || jugador=='tijera' && ordenador=='tijera'){
+            console.log('EMPATE');
+            resultado.innerHTML= '<h4>&#128580; Empate &#128580;</h4>';
+        }else if(jugador=='piedra' && ordenador=='papel' || jugador=='papel' && ordenador=='tijera' || jugador=='tijera' && ordenador=='piedra' ){
+            console.log('PERDISTE');
+            resultado.innerHTML= '<h4>&#128553; Perdiste contra la máquina &#128553;</h4>';
+        }else{
+            resultado.innerHTML= '<h4>&#129351 Ganaste a la máquina &#129351 🤭</h4>';
+        }
+        };
+
+        
+
+    </script>
+</body>
+
+</html>
