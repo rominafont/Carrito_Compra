@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado Restaurantes</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;500;900&display=swap');
+        body {
+            margin: 0;
+            padding: 0;
+            font-family:  'Lexend', Arial, Helvetica, sans-serif;
+            
+        }
+
+        .title{
+            margin: 3%;
+        }
+
+        .text{
+            margin: 3%;
+            text-align: justify;
+            font-weight: 300;
+            font-size: 14px;
+        }
+        .pretext{
+            margin: 3%;
+            text-align: justify;
+            font-weight: 300;
+            font-size: 14px;
+            font-style: italic ;
+        }
+
+        .bubble{
+            background-color: rgb(102, 82, 121);
+            color: white;
+            padding: 2%;
+            border-radius: 20px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 16spx;
+        }
+
+        .listRest{
+            background-color: rgb(255, 240, 251);
+            margin: 3%;
+            padding: 3%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            border-radius: 10px;
+        }
+        .cardRest{
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+        }
+        .cardRest-img{
+            width: 300px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">Selección de Restaurantes</h1>
+    <!--<button id="btnListRest" onclick=" miHome()">Ver Restaurantes</button>-->
+    <div id="restaurantes" class="listRest">
+        <p class="pretext">Cargando restaurantes...</p>
+    </div>
+    <script>
+        // 1. Crear un objeto que represente la lista de restaurantes. Campos: nombre, imagen, descripcion, contacto(tel, dirección), id, categoria.
+        let listRestaurantes=[
+            {
+                id:'01',
+                name:'Flora Poke',
+                logo:'https://images.unsplash.com/photo-1606757819934-d61a9f7279d5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHBva2V8ZW58MHx8MHx8fDA%3D',
+                descp:'Restaurante de Poke vegano, donde nuestra especialidad es crear platos a partir de flores e integrarlas en nuestras recetas.',
+                contact: {
+                    mail:'hello@florapoke.com',
+                    telf:'686868686',
+                    urlIg:'@florapoke',
+                    urlFb:'Flora Poke Page',
+                    urlGMaps:'Flora Poke'
+                },
+                cat:['poke','healthy','vegan'],
+                adress:'Calle Alicante nº2, Valencia (España)',
+                score:'4.7/5',
+                bestPlates:[
+                    {
+                        namePlate:'Tofu Teriyaki al Jazmín',
+                        price:'11,11€',
+                        descpPlate:'Una de nuestras mejores creaciones, la unión del teriyaqui con el jazmín. '
+                    },
+                    {
+                        namePlate:'No salmon Rose Poke',
+                        price:'9,99€',
+                        descpPlate:'La unión más coqueta en un solo plato.'
+                    }
+                ]
+            },{
+                id:'02',
+                name:'Mi Burrito Sabanero',
+                logo:'https://images.unsplash.com/photo-1592044903782-9836f74027c0?q=80&w=1227&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                descp:'Mi Burrito Sabanero: auténticos burritos mexicanos en Valencia. ¡Sabor y frescura en cada bocado!',
+                contact: {
+                    mail:'hi@miburritosabanero.com',
+                    telf:'677777777',
+                    urlIg:'@miburritosabanerovlc',
+                    urlFb:'Mi Burrito Sabanero Valencia Page',
+                    urlGMaps:'Mi Burrito Sabanero Valencia'
+                },
+                cat:['mexican','spicy','vegan'],
+                adress:'Calle Ecuador nº5, Valencia (España)',
+                score:'4.1/5',
+                bestPlates:[
+                    {
+                        namePlate:'Burrito de queso con leche de burra vegana',
+                        price:'11,11€',
+                        descpPlate:'Disfruta de una experiencia única con nuestro Burrito de queso vegano, elaborado con una alternativa sorprendente: leche de burra vegana. '
+                    },
+                    {
+                        namePlate:'Burrito No Cris',
+                        price:'9,99€',
+                        descpPlate:'Descubre el "No Cris": un burrito vegano repleto de sabores. Aguacate, carne mechada vegana, frijoles, maíz, queso vegano, lechuga y pico de gallo se unen para ofrecerte una explosión de delicias en cada bocado.'
+                    }
+                ]
+            }
+        ];
+
+        //2. Listar los restaurantes en pantala mostrando sus datos cada objeto debe tener un botón para ir a ese restaurante. 
+        
+        
+        const boxRestaurantes = document.getElementById('restaurantes');
+        
+        boxRestaurantes.innerHTML=""; //elimino contenido que se carga antes de los datos Ej: 'Cargando contenido'
+
+       
+
+        listRestaurantes.forEach((restaurant) => {  //la variable naranja 'restaurant' representa uno x uno los objetos de dentro del objeto, es decir si en el listado de restaurantes hay restaurantes y sus dadtos 'restaurant' es los datos de uno solo.
+        let listCategorias="<div class='categoria'>";
+            restaurant.cat.forEach(categoria => {
+                
+                    listCategorias+=`<span class="bubble">${categoria}</span>`
+                
+            });
+            listCategorias+="</div>";
+            boxRestaurantes.innerHTML+=`<div class="cardRest">
+                                            <img class="cardRest-img" src="${restaurant.logo}"/>
+                                            <h2 class="title">${restaurant.name}</h2>
+                                            <p class="text">${restaurant.descp}</p> 
+                                            <div class="">${listCategorias}</div>
+                                        </div>`;
+
+        });
+        
+
+    </script>
+
+    <script>
+        //3. Crear url nuevo
+        const misParametros = window.location.search;
+        console.log(misParametros);
+
+        const urlParams = new URLSearchParams(misParametros); 
+
+    
+    </script>
+</body>
+</html>
