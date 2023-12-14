@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante</title>
+</head>
+<body>
+    <div id="parrafo"></div>
+    <div id="banner">Cargando Restaurante...</div>
+
+    <script src="./datos.js"></script>
+
+    <script>
+        
+
+        //Paso 1: Leer la URL
+        const urlParams = new URLSearchParams(window.location.search);
+
+
+        //Paso 2: Obtener y crear variables de mi url
+
+        const miId=urlParams.get("id"); //duda
+
+        console.log("parametros: ", urlParams);
+
+        //Paso 3:  Filtrar mis datos para obtener el restaurante deseado
+        //opción find: devuelve el primer objeto que encuentra
+        
+        let restauranteElegido=listRestaurantes.find(
+            (resto) => resto.id == Number(miId)
+        );
+        alert(restauranteElegido.name); //avisa si estamos en el objeto que toca (provisional)
+        //opción filter: devuelve una lista de todo lo que encuentra con esos parametros
+        /*let restauranteVegano=listRestaurantes.filter(
+            (resto) => resto.cat.includes("vegano") //el includes verifica que tu objeto incluye el dato que le das
+        );
+
+        const parrafo=document.getElementById("parrafo");
+
+        restauranteVegano.forEach( resto => {
+            parrafo.innerHTML+=` <div class="parrafo">${resto.name}</div>`;
+        });*/
+
+        const boxRestaurante = document.getElementById('banner');
+        
+        boxRestaurante.innerHTML=""; //elimino contenido que se carga antes de los datos Ej: 'Cargando contenido'
+
+       
+            
+           boxRestaurante.innerHTML+=`<div class="cardRest">
+                                            <img class="cardRest-img" src="${restauranteElegido.logo}"/>
+                                            <h2 class="title">${restauranteElegido.name}</h2>
+                                            <p class="text">${restauranteElegido.descp}</p> 
+                                            <div class="contact">
+        <a href="${restauranteElegido.contact.urlFb}"><i class="fa-brands fa-facebook"></i>
+            </a>
+        <a href="${restauranteElegido.contact.urlGMaps}"><i class="fa-solid fa-map"></i></a>
+        <a href="${restauranteElegido.contact.urlIg}"><i class="fa-brands fa-instagram"></i></a>
+    </div>
+                              </div>`;
+
+    ;
+
+
+    </script>
+    
+</body>
+</html>
