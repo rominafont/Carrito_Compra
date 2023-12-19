@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario con métodos por JS</title>
+</head>
+<body>
+    <h1>Formulario Login</h1>
+    <form action=".backend/contacto.php" method="GET" id="formLogin">
+        <input type="text" name="nombre" value="" placeholder="Nombre">
+        <input type="password" name="clave" value="" placeholder="Clave">
+        <input type="sibmit" value="enviar formulario" >
+    </form>
+
+    <script>
+        //selctor del id
+        const miFormulario = document.getElementById('formLogin');
+
+        //agrega un listerner de tipo submit
+        miFormulario.addEventListener("submit", (event)=> {
+            //prevenimos la accion por defecto del formulario (NO SE VA A MANDAR)
+            event.preventDefault();
+
+            console.log('enviando formulario');
+
+            //CARGAR LOS DATOS
+            /*//mis datos en JAVASCRIPT:
+            const datos={
+                name:"romi",
+                pass:"1234"
+            }
+            //mis datos en JSON: NO USAR!!
+            { "name": "romi", "pass": "1234"}*/
+
+            //AUTOMATICAMENTE DESDE LA BASE DE DATOS SIN CARGAR EL CONTENIDO A MANO:
+            const misDatosFormulario = new FormData(miFormulario);
+
+
+            const opciones={
+                method: "GET",
+                headers:{
+                    "Content-type":"application/json"
+                },
+                body: misDatosFormulario
+            };
+
+            fetch("./request.json", opciones   )
+                .then( (response) =>{
+                    if(!response.ok){
+                        throw new Error ("La silicitud no fue exitosa:", response.status)
+                    }
+                    console.log("Tuve respuesta", response);
+
+                    //convertir mi respuesta JSON! y enviarsela al siguiente paso
+                    return response.json();
+                })
+                .then( (datosenJson) => {
+                    console.log("Mis datos devueltos son:", datosenJson);
+
+                    //funcion para imprimir en pantalla los datos que quieres:
+                    imprimirPantalla(datosenJson); //puedes deglosar la función abajo más ordenada
+                })
+                .catch( (error) => {
+                    
+                })
+        });
+    </script>
+
+</body>
+</html>

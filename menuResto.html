@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú</title>
+    <style>
+        .platoBox {
+            border: 1px dashed gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>Menu del resturante:</h1>
+
+    <div>
+        <h3>Formato Formulario</h3>
+        <form action="./backend-recibirMenu.html" method="" id="formMenu">
+            <!--- imprimir todo mi menú en un formulario-->
+        </form>
+    </div>
+
+    <hr>
+
+    <div>
+        <h3>Formato Caja</h3>
+        <div id="divMenu">
+            <!-- imprimir todo mi menu en caja-->
+        </div>
+    </div>
+
+    
+    <script src="./datos.js"></script>
+
+    <script>
+        // URL del archivo con mis datos
+        var datosMenu = listRestaurantes;
+
+        // Uso de la función fetch
+        fetch(url)
+        .then(function (response) {
+            // Verificar si la solicitud fue exitosa (código de estado 200)
+            if (!response.ok) {
+                throw new Error("La solicitud no fue exitosa: " + response.status);
+            }
+            // Parsear la respuesta como JSON y retornar la promesa resultante
+            return response.json();
+        })
+        .then(function (data) {
+            // Manipular los datos obtenidos
+            console.log("Datos obtenidos:", data);
+            imprimirMenu(datosenJson);
+        })
+        .catch(function (error) {
+            // Manejar errores de red u otros problemas
+            console.error("Error en la solicitud:", error);
+        });
+
+        const divMenu=document.getElementById("divMenu");
+        const formMenu=document.getElementById("formMenu");
+
+        function imprimirMenu(){
+            formMenu.innerHTML="";
+            divMenu.innerHTML="";
+
+            menuResto.forEach( (plato, i ) => {
+                console.log(plato);
+
+                // imprimimos el formulario
+                formMenu.innerHTML+=`
+                    <input type="text" name="plato_${plato.id}" value="${plato.cant}" />${plato.titulo} (€ ${plato.precio})<br>
+                `;
+
+                // imprimimos las CAja
+                divMenu.innerHTML+=`<div class="platoBox">
+                        <h3>${plato.titulo}</h3>
+                        precio: ${plato.precio}<br>
+                        cant: ${plato.cant}<br>
+
+                        <button onClick='
+                            menuResto[${i}].cant+=1;
+                            imprimirMenu();
+                        '>+</button>
+                        <button onClick='
+                            menuResto[${i}].cant-=1;
+                            imprimirMenu();
+                        '>-</button>
+                    </div>`;
+
+            });
+            formMenu.innerHTML+="<input type='submit' value='Realizar Pedido'>";
+    }
+    </script>
+    
+</body>
+</html>
