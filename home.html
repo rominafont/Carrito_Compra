@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado Restaurantes</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;500;900&display=swap');
+        body {
+            margin: 0;
+            padding: 0;
+            font-family:  'Lexend', Arial, Helvetica, sans-serif;
+            
+        }
+
+        .title{
+            margin: 3%;
+        }
+
+        .text{
+            margin: 3%;
+            text-align: justify;
+            font-weight: 300;
+            font-size: 14px;
+        }
+        .pretext{
+            margin: 3%;
+            text-align: justify;
+            font-weight: 300;
+            font-size: 14px;
+            font-style: italic ;
+        }
+
+        .bubble{
+            background-color: rgb(102, 82, 121);
+            color: white;
+            padding: 1%;
+            padding-left: 5%;
+            padding-right: 5%;
+            border-radius: 20px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 14px;
+            margin: 1%;
+            margin-right: 10px;
+        }
+
+        .listRest{
+            background-color: rgb(255, 240, 251);
+            margin: 3%;
+            padding: 3%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            border-radius: 10px;
+        }
+        .cardRest{
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+        }
+        .cardRest-img{
+            width: 300px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">Selección de Restaurantes</h1>
+    <!--<button id="btnListRest" onclick=" miHome()">Ver Restaurantes</button>-->
+    <div id="restaurantes" class="listRest">
+        <p class="pretext">Cargando restaurantes...</p>
+    </div>
+
+    <!--"Base de datos" Front 
+    Siempre cargar antes que el resto de scripts para poder extraer la info de ahí-->
+    <script src="./datos.js"></script>
+
+    <script> 
+    //2. Listar los restaurantes en pantalla mostrando sus datos cada objeto debe tener un botón para ir a ese restaurante. 
+        
+        
+        const boxRestaurantes = document.getElementById('restaurantes');
+        
+        boxRestaurantes.innerHTML=""; //elimino contenido que se carga antes de los datos Ej: 'Cargando contenido'
+
+       
+
+        listRestaurantes.forEach((restaurant) => {  //la variable naranja 'restaurant' representa uno x uno los objetos de dentro del objeto, es decir si en el listado de restaurantes hay restaurantes y sus dadtos 'restaurant' es los datos de uno solo.
+        let listCategorias="<div class='categoria'>";
+            restaurant.cat.forEach(categoria => {
+                
+                    listCategorias+=`<span class="bubble">${categoria}</span>`
+            });
+            listCategorias+="</div>";
+
+            
+           boxRestaurantes.innerHTML+=`<div class="cardRest">
+                                            <img class="cardRest-img" src="${restaurant.logo}"/>
+                                            <h2 class="title">${restaurant.name}</h2>
+                                            <p class="text">${restaurant.descp}</p> 
+                                            <div class="">${listCategorias}</div>
+                                            <div class="contact">
+        <a href="${restaurant.contact.urlFb}"><i class="fa-brands fa-facebook"></i>
+            </a>
+        <a href="${restaurant.contact.urlGMaps}"><i class="fa-solid fa-map"></i></a>
+        <a href="${restaurant.contact.urlIg}"><i class="fa-brands fa-instagram"></i></a>
+    </div> 
+    <a class="button" target=_blank href="./restaurante.html?id=${restaurant.id}">ver más</a>
+                                        </div>`;
+
+        });
+        
+
+    </script>
+
+    <script>
+        //Crear un URL
+        //Paso 1: Crear url nuevo
+        const misParametros = window.location.search;
+        console.log(misParametros);
+        //Paso 2: Crear url nuevo
+        const urlParams = new URLSearchParams(misParametros); 
+
+        //Paso 3: Filtrar mis datos+
+        let restElegido=listRestaurantes.find(
+            (resto) =>resto.id == Number(idResto)
+        );
+    
+    </script>
+</body>
+</html>

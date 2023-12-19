@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Vectores</title>
+
+    <style>
+        #result-box{
+            border: 1px,  dashed gray;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prácticas Vectores</h1>
+
+   
+    <!--Mis resultados-->
+    <div id="result-box"></div>
+
+    <script>
+        const result = document.getElementById("result-box");
+        //console.log("resutl es: ", result);
+
+        let indice=0;
+
+        function show(item){
+            indice++;//suma las lineas de los elementos de la lista
+            //console.log("Saludar a ", nombre);
+            //console.log("tiene", edad);
+
+            //result.innerHTML = result.innerHTML + nombre; 
+            result.innerHTML+=`<pre>${indice}. ${item}</pre> <hr>`; //+= agrga elementos nuevos a una lista
+        };
+
+        //show("María");// Las veces que añadamos la función esas veces se ejecutará
+        //show("Lucas"); // Se ejecutará 2 veces
+        //show("Hola q tal?");
+    </script>
+
+    <script>
+        //console.log(indice);
+
+        let alumnos=["Juanjo","Martin","Álvaro"];
+        //console.log(alumnos);
+        //console.log(alumnos.length);
+    
+        //agregar items a nuestro array
+        alumnos.push("Bea");
+        show[alumnos];
+
+        //quitar elementos del array
+        //1. posición en la que lo quiero eliminar / 2. cuantos quiero eliminar / 3. que voy a agregar al eliminarlo
+        alumnos.splice(0, 1, "Paul");
+        show(alumnos);
+
+        // de la lista, escoger el último y borrarlo mediante números negativos para llegar antes.
+        alumnos.splice(-1, 1);
+        show(alumnos);
+
+        //eliminar 2 elementos del final y añadir dos nuevos
+        alumnos.splice(-2, 2, "Lucas", "Alex");
+        show(alumnos);
+
+
+        //-----------------------------------------------
+        //     FORMAS DE ESCRIBIR UNA FUNCIÓN
+        //-----------------------------------------------
+
+        //función estándar y más usada
+        function miFuncion(){
+            console.log('Mi Función Nombrada');
+        }
+        miFuncion();
+
+        //función anónima
+        const miFuncionAnonima = function(){
+            consle.log('Mi función anonima');
+        }
+        miFuncionAnonima();
+
+        //función flecha
+        const miFuncionFlecha = () => {
+            alert('Función Flecha');
+        }
+        miFuncionFlecha();
+
+        //función en una linea solo tiene una linea de código para ejecutar 
+        var miFuncionEnLinea = () => console.log('Soy una funcion de una sola linea.')
+
+        //-----------------------------------------------
+        //     RECORRER ARRAYS CON forEach
+        //-----------------------------------------------
+
+        function recorrerVector(){
+            const numero=[12,24,36];
+            const copy=[];
+
+            item[2]=38; //cambiamos el valor del item
+
+            items.forEach(
+                function(num){
+                    //agrega a copy el item que estoy viendo
+                    copy.push(num);
+                }
+            );
+            show('Original: '+items);
+            show('Copia: '+copy);
+        }
+
+        recorrerVector();
+
+
+        //manera más comun de recorrer arrays y de ver ejemplos en internet
+        //al indice tambien le pueden llamar i
+        alumnos=['Juanjo', 'Martin', 'Álvaro'];
+
+        alumnos.forEach(    (alumno, indice)=>{
+            alumnos[indice]= alumno+'genio';
+        });
+        show(alumnos);
+
+
+    </script>
+</body>
+</html>
